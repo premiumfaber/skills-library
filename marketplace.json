@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "skills": [
+    {
+      "id": "visual-brainstorming",
+      "name": "Visual Brainstorming",
+      "version": "0.1.0",
+      "description": "Diagram-first brainstorming, product specs, and DDD-oriented architecture planning for repo-backed changes.",
+      "path": "skills/visual-brainstorming",
+      "entrypoint": "SKILL.md",
+      "targets": {
+        "codex": {
+          "compatible": true
+        },
+        "claudeCode": {
+          "compatible": true
+        }
+      },
+      "tags": [
+        "brainstorming",
+        "architecture",
+        "ddd",
+        "design",
+        "mermaid",
+        "specs"
+      ]
+    }
+  ]
+}
