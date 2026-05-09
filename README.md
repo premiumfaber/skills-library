@@ -1,4 +1,4 @@
-﻿# Skills Library
+# Skills Library
 
 Repository-backed skills marketplace for Codex and Claude Code.
 
