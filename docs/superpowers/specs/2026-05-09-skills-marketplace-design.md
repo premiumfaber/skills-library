@@ -3,7 +3,7 @@
 ## Summary
 Create a small, repository-backed skills marketplace for Codex and Claude Code. The first published skill will be an adapted `Visual Brainstorming` skill. The repository will use a shared skill directory as the source of truth, plus a `marketplace.json` registry that records metadata, paths, versions, tags, and compatibility with both tools.
 
-The adapted `Visual Brainstorming` skill must add an architecture-planning stage after the product/business spec is reviewed and before implementation planning begins. The spec answers what should be built and why; the architecture plan answers how the work should be shaped at the module, bounded-context, interface, domain-model, and data-model level.
+The adapted `Visual Brainstorming` skill must add an architecture-planning stage after the product/business spec is reviewed and before the detailed implementation plan begins. The spec answers what should be built and why; the architecture plan answers how the work should be shaped at the module, bounded-context, interface, domain-model, and data-model level; the detailed implementation plan then turns the approved architecture into concrete tasks, files, tests, commands, and commits.
 
 The MVP is intentionally file-based: users browse the repository, inspect the registry, and copy or install skill folders through their own local tooling. Installer scripts, a web catalog, and full schema validation can come later after the registry shape has proven useful.
 
@@ -57,7 +57,7 @@ flowchart TD
     C --> D["User reviews and approves spec"]
     D --> E["Write visual architecture plan"]
     E --> F["User reviews and approves architecture"]
-    F --> G["Transition to implementation planning"]
+    F --> G["Create detailed implementation plan"]
 ```
 
 ### Architecture Plan Model
@@ -106,7 +106,8 @@ flowchart TD
 - Each skill entry must include `id`, `name`, `version`, `description`, `path`, `entrypoint`, `targets`, and `tags`.
 - `targets.codex.compatible` and `targets.claudeCode.compatible` must both be present for the first skill.
 - The first skill must live at `skills/visual-brainstorming/SKILL.md`.
-- The first skill must include an `Architecture Plan` stage after spec review and before implementation planning.
+- The first skill must include an `Architecture Plan` stage after spec review and before the detailed implementation plan.
+- After the architecture plan is approved, the skill must transition to `superpowers:writing-plans` for a detailed implementation plan.
 - The architecture stage must focus on module boundaries, bounded contexts, interfaces/contracts, domain models, and data models.
 - For existing systems, the architecture stage must describe only the new or modified modules, contexts, interfaces, and models that matter for the requested change.
 - The architecture stage must be visual by default, using Mermaid diagrams for module breakdowns, context maps, interface relationships, data models, flows, and UI/component hierarchy when relevant.
@@ -129,9 +130,11 @@ Start with repository/file-based installation. A user can clone the repository o
 Publish `Visual Brainstorming` as `0.1.0` because this repository is a new distribution channel even though the source skill already exists elsewhere.
 
 ### Architecture Planning Between Spec And Plan
-Adapt `Visual Brainstorming` so the workflow does not jump directly from approved spec to implementation planning. Insert an `Architecture Plan` stage that turns the agreed product/business intent into a technical shape before detailed tasks are written.
+Adapt `Visual Brainstorming` so the workflow does not jump directly from approved spec to detailed implementation planning. Insert an `Architecture Plan` stage that turns the agreed product/business intent into a technical shape before detailed tasks are written.
 
-The architecture plan is not the implementation plan. It should define boundaries and contracts: modules, bounded contexts, interfaces, domain concepts, data models, and UI/component hierarchy when applicable. It should also state which existing parts are modified and which new parts are introduced.
+The architecture plan is not the detailed implementation plan. It should define boundaries and contracts: modules, bounded contexts, interfaces, domain concepts, data models, and UI/component hierarchy when applicable. It should also state which existing parts are modified and which new parts are introduced.
+
+After the user approves the architecture plan, the workflow must invoke `superpowers:writing-plans` to create the detailed implementation plan. That plan owns task sequencing, file-level changes, tests, verification commands, checkpoints, and commits.
 
 ### DDD-Oriented Visuals
 Use DDD-oriented language and diagrams where useful: bounded contexts, context relationships, aggregates/entities/value objects when needed, service boundaries, public interfaces, and data ownership. Mermaid should be the default notation. For UI/component work, include a component hierarchy or interaction diagram instead of only prose.
@@ -141,7 +144,7 @@ Use DDD-oriented language and diagrams where useful: bounded contexts, context r
 - If a registry `path` or `entrypoint` points to a missing file, the release is not ready.
 - If a target is omitted, readers should treat compatibility as unknown rather than compatible.
 - If Codex and Claude Code later need different packaging behavior, add explicit adapter metadata instead of duplicating the skill content.
-- If an architecture plan would duplicate the implementation plan, narrow it back to boundaries, contracts, models, and diagrams.
+- If an architecture plan would duplicate the detailed implementation plan, narrow it back to boundaries, contracts, models, and diagrams.
 - If a requested change is tiny and architecture would add no clarity, the skill may include a short `Architecture Plan Omitted` note explaining why.
 
 ## Testing Strategy
@@ -149,8 +152,8 @@ Use DDD-oriented language and diagrams where useful: bounded contexts, context r
 - Check that every skill entry resolves to an existing `SKILL.md`.
 - Manually inspect `README.md` for install instructions and future-skill contribution guidance.
 - Manually inspect `skills/visual-brainstorming/SKILL.md` to confirm it has the expected skill frontmatter and body.
-- Manually inspect `skills/visual-brainstorming/SKILL.md` to confirm it inserts architecture planning after spec review and before implementation planning.
-- Use at least one skill pressure prompt during implementation review where a user asks for a feature and the expected behavior is: product spec first, visual architecture plan second, implementation plan third.
+- Manually inspect `skills/visual-brainstorming/SKILL.md` to confirm it inserts architecture planning after spec review and before detailed implementation planning.
+- Use at least one skill pressure prompt during implementation review where a user asks for a feature and the expected behavior is: product spec first, visual architecture plan second, detailed implementation plan third.
 
 ## MVP Deliverables
 - `marketplace.json`

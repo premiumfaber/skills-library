@@ -314,7 +314,7 @@ Follow all gates from `superpowers:brainstorming`:
 - Run spec self-review.
 - Ask the user to review the written spec before moving to architecture planning.
 
-After the user approves the written spec, add the architecture-planning stage described below. Do not jump directly from spec approval to implementation planning.
+After the user approves the written spec, add the architecture-planning stage described below. Do not jump directly from spec approval to detailed implementation planning.
 
 ```mermaid
 flowchart TD
@@ -327,7 +327,7 @@ flowchart TD
     F --> G["Review spec in isolated worktree"]
     G --> H["Create visual architecture plan"]
     H --> I["Review architecture with user"]
-    I --> J["Later transition to implementation planning"]
+    I --> J["Create detailed implementation plan"]
 ```
 
 ## Visual Decision Rule
@@ -411,7 +411,7 @@ Every spec should normally include:
 - **System or component overview** using `flowchart`.
 - **Main workflow** using `flowchart` or `sequenceDiagram`.
 - **State, data, or error model** when relevant using `stateDiagram-v2`, `erDiagram`, `flowchart`, or `sequenceDiagram`.
-- **Implementation sequence** only when it clarifies rollout or dependency order without replacing the later implementation plan.
+- **Implementation sequence** only when it clarifies rollout or dependency order without replacing the later detailed implementation plan.
 
 For microscopic changes, one compact diagram is enough. Omit Mermaid only when a diagram would add no clarity. If omitting Mermaid, include a short `Diagram Omitted` section explaining why.
 
@@ -471,7 +471,7 @@ The architecture plan translates the approved product intent into technical shap
 
 For existing systems, do not document the entire architecture unless the change requires it. Focus on new or modified modules, contexts, interfaces, domain models, and data models.
 
-The architecture plan is not the implementation plan. It should define boundaries and contracts, not a step-by-step task list.
+The architecture plan is not the detailed implementation plan. It should define boundaries and contracts, not a step-by-step task list.
 
 ```mermaid
 flowchart TD
@@ -482,7 +482,7 @@ flowchart TD
     ArchitecturePlan --> DomainModels["Domain models"]
     ArchitecturePlan --> DataModels["Data models"]
     ArchitecturePlan --> Components["UI/component hierarchy when relevant"]
-    ArchitecturePlan --> Plan["Implementation planning"]
+    ArchitecturePlan --> Plan["Detailed implementation plan"]
 ```
 
 ## Architecture Plan Requirements
@@ -510,7 +510,7 @@ For microscopic changes where architecture would add no clarity, include:
 
 ````markdown
 ## Architecture Plan Omitted
-This change does not introduce or modify meaningful module boundaries, interfaces, domain models, data models, or component hierarchy. The approved spec is sufficient for implementation planning.
+This change does not introduce or modify meaningful module boundaries, interfaces, domain models, data models, or component hierarchy. The approved spec is sufficient for detailed implementation planning.
 ````
 
 ## Architecture Plan Template
@@ -562,7 +562,7 @@ erDiagram
 [Approved decisions and rejected alternatives.]
 
 ## Testing Implications
-[Boundary, contract, and model tests that the implementation plan should include.]
+[Boundary, contract, and model tests that the detailed implementation plan should include.]
 ````
 
 ## Architecture Self-Review
@@ -574,11 +574,11 @@ Before asking the user to approve the architecture plan, check:
 - Existing-system changes identify what is new, modified, or untouched.
 - Domain terms are consistent with the product spec.
 - Diagrams do not imply implementation tasks that the text omits.
-- The plan is not a task checklist; detailed tasks are deferred to `superpowers:writing-plans`.
+- The architecture plan is not a task checklist; detailed tasks are deferred to `superpowers:writing-plans`.
 
 Fix issues inline before asking the user to review the architecture plan.
 
-After the user approves the architecture plan, invoke `superpowers:writing-plans` to create the implementation plan.
+After the user approves the architecture plan, invoke `superpowers:writing-plans` to create the detailed implementation plan with task sequencing, file-level changes, tests, verification commands, checkpoints, and commits.
 
 ## Spec Self-Review Additions
 
@@ -598,7 +598,7 @@ Fix issues inline before asking the user to review the spec.
 | Mistake | Correction |
 |---------|------------|
 | Replacing `superpowers:brainstorming` | Use it as the base process and preserve its gates. |
-| Jumping from spec approval straight to implementation planning | Create and review the visual architecture plan first. |
+| Jumping from spec approval straight to detailed implementation planning | Create and review the visual architecture plan first. |
 | Turning the architecture plan into a task checklist | Keep it to boundaries, contracts, models, and diagrams. |
 | Asking several visual questions at once | Show one diagram, ask one question. |
 | Using browser visuals for architecture | Use Mermaid for architecture, data, workflow, and state. |
@@ -739,7 +739,7 @@ The validator checks that `marketplace.json` parses, required fields exist, Code
 
 ## First Skill: Visual Brainstorming
 
-`Visual Brainstorming` orchestrates visual, Mermaid-first discovery for repo-backed changes. This marketplace version adds an architecture-planning stage after the product/business spec is approved and before implementation planning begins.
+`Visual Brainstorming` orchestrates visual, Mermaid-first discovery for repo-backed changes. This marketplace version adds an architecture-planning stage after the product/business spec is approved and before detailed implementation planning begins.
 
 The architecture stage focuses on module boundaries, bounded contexts, interfaces, domain models, data models, and UI/component hierarchy when relevant.
 ````
@@ -858,7 +858,7 @@ Expected: the command prints matches for all five patterns.
 Read `skills/visual-brainstorming/SKILL.md` and check this prompt mentally against the workflow:
 
 ```text
-I want to add a customer-facing dashboard to an existing app. Help me design it and then prepare an implementation plan.
+I want to add a customer-facing dashboard to an existing app. Help me design it and then prepare a detailed implementation plan.
 ```
 
 Expected behavior:
@@ -868,7 +868,7 @@ Expected behavior:
 3. It asks the user to review the written spec.
 4. It produces a visual architecture plan with modules, bounded contexts, interfaces, models, and component hierarchy.
 5. It asks the user to review the architecture.
-6. It only then invokes `superpowers:writing-plans`.
+6. It only then invokes `superpowers:writing-plans` for the detailed implementation plan.
 
 - [ ] **Step 7: Review final commits**
 
@@ -878,12 +878,10 @@ Run:
 git log --oneline -5
 ```
 
-Expected: recent commits include:
+Expected: recent commits include the implementation commits:
 
 ```text
 Document skills marketplace
 Add visual brainstorming marketplace skill
 Add marketplace validator
-Add architecture planning stage to marketplace spec
-Add skills marketplace design spec
 ```
