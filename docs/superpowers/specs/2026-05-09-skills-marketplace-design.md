@@ -1,5 +1,7 @@
 # Skills Marketplace Design
 
+> Status update, 2026-05-10: this original file-based skill marketplace design has been superseded by the Codex plugin marketplace structure in `.agents/plugins/marketplace.json` and `plugins/skills-library/`. It remains as historical design context.
+
 ## Summary
 Create a small, repository-backed skills marketplace for Codex and Claude Code. The first published skill will be an adapted `Visual Brainstorming` skill. The repository will use a shared skill directory as the source of truth, plus a `marketplace.json` registry that records metadata, paths, versions, tags, and compatibility with both tools.
 

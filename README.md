@@ -1,22 +1,39 @@
 # Skills Library
 
-Repository-backed skills marketplace for Codex and Claude Code.
+Repository-backed Codex plugin marketplace for personal workflow skills.
 
-The marketplace is intentionally small: skill folders live in `skills/`, and the top-level `marketplace.json` file is the machine-readable index. The first published skill is `Visual Brainstorming`.
+This repository is structured as a Codex plugin platform. Codex can add it through
+the **Add platform** dialog by reading `.agents/plugins/marketplace.json`, then
+installing the `skills-library` plugin from `plugins/skills-library`.
 
-## Available Skills
+## Available Plugin
 
-| Skill | Version | Targets | Description |
+| Plugin | Version | Category | Description |
 | --- | --- | --- | --- |
-| Visual Brainstorming | 0.1.0 | Codex, Claude Code | Diagram-first brainstorming, product specs, and DDD-oriented architecture planning for repo-backed changes. |
+| Skills Library | 0.1.0 | Productivity | Personal Codex workflow skills for visual planning and bounded review loops. |
+
+## Included Skills
+
+| Skill | Version | Description |
+| --- | --- | --- |
+| Code Review Loop | 0.1.0 | Bounded review-fix-test cycles that rerun code review until changes are clean or a maximum iteration count is reached. |
+| Visual Brainstorming | 0.1.0 | Diagram-first brainstorming, product specs, and DDD-oriented architecture planning for repo-backed changes. |
 
 ## Repository Structure
 
 ```text
-marketplace.json
-skills/
-  visual-brainstorming/
-    SKILL.md
+.agents/
+  plugins/
+    marketplace.json
+plugins/
+  skills-library/
+    .codex-plugin/
+      plugin.json
+    skills/
+      code-review-loop/
+        SKILL.md
+      visual-brainstorming/
+        SKILL.md
 scripts/
   validate-marketplace.ps1
 docs/
@@ -25,21 +42,27 @@ docs/
     plans/
 ```
 
-## Install A Skill
+## Add This Platform To Codex
 
-This MVP is file-based. Clone this repository or download the skill folder, then copy the selected skill folder into the local skills directory used by your agent.
+Open Codex and choose **Add platform**.
 
-For `Visual Brainstorming`, copy:
-
-```text
-skills/visual-brainstorming
-```
-
-The skill entrypoint is:
+Use:
 
 ```text
-skills/visual-brainstorming/SKILL.md
+Source: C:\git\pf\skills-library\
+Git reference: main
+Sparse checkout paths:
+.agents/plugins
+plugins
 ```
+
+For a local folder source, leaving sparse checkout empty should also work. If you
+use sparse checkout, include both `.agents/plugins` and `plugins`, because the
+marketplace file and plugin files live in separate top-level folders.
+
+After adding the platform, install the `Skills Library` plugin from Codex. You may
+need to start a new conversation or restart Codex before the newly installed
+skills appear in the available skills list.
 
 ## Validate The Marketplace
 
@@ -52,33 +75,45 @@ Run:
 Expected:
 
 ```text
-Marketplace validation passed (1 skills).
+Plugin marketplace validation passed (1 plugins, 2 skills).
 ```
 
-The validator checks that `marketplace.json` parses, required fields exist, Codex and Claude Code compatibility flags are present, and every skill entry points to a real `SKILL.md`.
+The validator checks that:
+
+- `.agents/plugins/marketplace.json` parses.
+- Every marketplace plugin entry has installation and authentication policy.
+- Every plugin entry points to a real `.codex-plugin/plugin.json`.
+- Every plugin manifest name matches its folder and marketplace entry.
+- The plugin skills directory exists.
+- Every skill has a `SKILL.md` whose frontmatter declares the matching skill name.
 
 ## Add A Skill
 
-1. Create a new folder under `skills/<skill-id>/`.
+1. Create a new folder under `plugins/skills-library/skills/<skill-id>/`.
 2. Add `SKILL.md` with frontmatter whose `name` matches `<skill-id>`.
-3. Add a new entry to `marketplace.json`.
-4. Include both target compatibility flags:
+3. Update `plugins/skills-library/.codex-plugin/plugin.json` if the plugin
+   description, keywords, or starter prompts should change.
+4. Run `.\scripts\validate-marketplace.ps1`.
+
+## Add Another Plugin
+
+1. Create a new folder under `plugins/<plugin-id>/`.
+2. Add `plugins/<plugin-id>/.codex-plugin/plugin.json`.
+3. Add a plugin entry to `.agents/plugins/marketplace.json`:
 
 ```json
-"targets": {
-  "codex": {
-    "compatible": true
+{
+  "name": "plugin-id",
+  "source": {
+    "source": "local",
+    "path": "./plugins/plugin-id"
   },
-  "claudeCode": {
-    "compatible": true
-  }
+  "policy": {
+    "installation": "AVAILABLE",
+    "authentication": "ON_INSTALL"
+  },
+  "category": "Productivity"
 }
 ```
 
-5. Run `.\scripts\validate-marketplace.ps1`.
-
-## First Skill: Visual Brainstorming
-
-`Visual Brainstorming` orchestrates visual, Mermaid-first discovery for repo-backed changes. This marketplace version adds an architecture-planning stage after the product/business spec is approved and before detailed implementation planning begins.
-
-The architecture stage focuses on module boundaries, bounded contexts, interfaces, domain models, data models, and UI/component hierarchy when relevant.
+4. Run `.\scripts\validate-marketplace.ps1`.

@@ -1,0 +1,35 @@
+{
+  "name": "skills-library",
+  "version": "0.1.0",
+  "description": "Personal Codex skills library packaged as a Codex plugin.",
+  "author": {
+    "name": "Marek Marciniak"
+  },
+  "license": "Proprietary",
+  "keywords": [
+    "skills",
+    "codex",
+    "brainstorming",
+    "code-review",
+    "workflow"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Skills Library",
+    "shortDescription": "Personal workflow skills for Codex.",
+    "longDescription": "Skills Library packages personal Codex skills for visual brainstorming, architecture-oriented specification work, and bounded code review loops.",
+    "developerName": "Marek Marciniak",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use visual brainstorming for this feature",
+      "Run a bounded code review loop"
+    ],
+    "brandColor": "#2563EB",
+    "screenshots": []
+  }
+}
