@@ -1,0 +1,35 @@
+{
+  "name": "domain-driven-design",
+  "version": "0.1.0",
+  "description": "Focused Domain-Driven Design toolkit for strategic design, context mapping, and tactical domain modeling.",
+  "author": {
+    "name": "Marek Marciniak"
+  },
+  "license": "Proprietary",
+  "keywords": [
+    "ddd",
+    "domain-driven-design",
+    "bounded-context",
+    "strategic-design",
+    "tactical-patterns"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Domain-Driven Design",
+    "shortDescription": "Strategic and tactical DDD skills without event-driven overreach.",
+    "longDescription": "A focused Domain-Driven Design plugin for deciding when DDD is warranted, modeling subdomains and bounded contexts, mapping context relationships, and applying tactical patterns such as aggregates, entities, value objects, repositories, and domain events.",
+    "developerName": "Marek Marciniak",
+    "category": "Development",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use domain-driven-design to assess this domain and propose bounded contexts",
+      "Use ddd-tactical-patterns to review aggregate and value object boundaries"
+    ],
+    "brandColor": "#0F766E",
+    "screenshots": []
+  }
+}

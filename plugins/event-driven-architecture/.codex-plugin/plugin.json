@@ -1,0 +1,37 @@
+{
+  "name": "event-driven-architecture",
+  "version": "0.1.0",
+  "description": "Event-driven architecture toolkit for CQRS, event sourcing, event stores, projections, and sagas.",
+  "author": {
+    "name": "Marek Marciniak"
+  },
+  "license": "Proprietary",
+  "keywords": [
+    "event-driven-architecture",
+    "cqrs",
+    "event-sourcing",
+    "event-store",
+    "projections",
+    "sagas"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Event-Driven Architecture",
+    "shortDescription": "CQRS, event sourcing, projections, event stores, and saga workflows.",
+    "longDescription": "A toolkit for designing event-driven systems: deciding when CQRS or event sourcing is justified, designing event streams and stores, building projections and read models, and coordinating long-running workflows with sagas.",
+    "developerName": "Marek Marciniak",
+    "category": "Development",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use event-sourcing-architect to assess whether event sourcing fits this workflow",
+      "Use projection-patterns to design read models from event streams",
+      "Use saga-orchestration to design a compensating workflow"
+    ],
+    "brandColor": "#7C3AED",
+    "screenshots": []
+  }
+}
