@@ -1,4 +1,4 @@
-# Skills Library
+# Built by Premium Faber
 
 Repository-backed Codex plugin marketplace for personal workflow skills.
 
@@ -10,7 +10,7 @@ installing the desired plugins from `plugins/`.
 
 | Plugin | Version | Category | Description |
 | --- | --- | --- | --- |
-| Skills Library | 0.1.0 | Productivity | Personal Codex workflow skills for visual planning and bounded review loops. |
+| SDLC | 0.1.0 | Productivity | Personal Codex workflow skills for visual planning and bounded review loops. |
 | Domain-Driven Design | 0.1.0 | Development | Focused DDD toolkit for strategic design, context mapping, and tactical domain modeling. |
 | Event-Driven Architecture | 0.1.0 | Development | CQRS, event sourcing, event stores, projections, and saga workflow skills. |
 
@@ -30,7 +30,7 @@ required for good domain modeling.
 
 ## Included Skills
 
-### Skills Library
+### SDLC
 
 | Skill | Version | Description |
 | --- | --- | --- |
@@ -82,7 +82,7 @@ plugins/
       event-store-design/
       projection-patterns/
       saga-orchestration/
-  skills-library/
+  sdlc/
     .codex-plugin/
       plugin.json
     skills/

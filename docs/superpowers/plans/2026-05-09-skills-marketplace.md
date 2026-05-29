@@ -1,6 +1,6 @@
 # Skills Marketplace Implementation Plan
 
-> Status update, 2026-05-10: this original implementation plan describes the first file-based skill marketplace. The repository has since been converted to a Codex plugin marketplace using `.agents/plugins/marketplace.json` and `plugins/skills-library/`. It remains as historical implementation context.
+> Status update, 2026-05-10: this original implementation plan describes the first file-based skill marketplace. The repository has since been converted to a Codex plugin marketplace using `.agents/plugins/marketplace.json` and `plugins/sdlc/`. It remains as historical implementation context.
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 

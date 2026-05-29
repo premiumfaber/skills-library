@@ -1,14 +1,14 @@
 {
-  "name": "skills-library",
+  "name": "built-by-premium-faber",
   "interface": {
-    "displayName": "Skills Library"
+    "displayName": "Built by Premium Faber"
   },
   "plugins": [
     {
-      "name": "skills-library",
+      "name": "sdlc",
       "source": {
         "source": "local",
-        "path": "./plugins/skills-library"
+        "path": "./plugins/sdlc"
       },
       "policy": {
         "installation": "AVAILABLE",

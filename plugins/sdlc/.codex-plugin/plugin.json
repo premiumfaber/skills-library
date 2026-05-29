@@ -1,7 +1,7 @@
 {
-  "name": "skills-library",
+  "name": "sdlc",
   "version": "0.1.0",
-  "description": "Personal Codex skills library packaged as a Codex plugin.",
+  "description": "Personal SDLC workflow skills packaged as a Codex plugin.",
   "author": {
     "name": "Marek Marciniak"
   },
@@ -15,9 +15,9 @@
   ],
   "skills": "./skills/",
   "interface": {
-    "displayName": "Skills Library",
+    "displayName": "SDLC",
     "shortDescription": "Personal workflow skills for Codex.",
-    "longDescription": "Skills Library packages personal Codex skills for visual brainstorming, architecture-oriented specification work, and bounded code review loops.",
+    "longDescription": "SDLC packages personal Codex skills for visual brainstorming, architecture-oriented specification work, and bounded code review loops.",
     "developerName": "Marek Marciniak",
     "category": "Productivity",
     "capabilities": [
